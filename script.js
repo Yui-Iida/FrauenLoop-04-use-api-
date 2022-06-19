@@ -32,10 +32,7 @@ const fetchRandomUser = async () => {
       //   const displayImg = document.querySelector('#img');
       //   const img = parsedData.results[0].picture.large;
       //   displayImg.insertAdjacentHTML(
-      //     'afterend',
-      //     `<img src=${img} class="img"/>
-
-      //     `
+      //     'afterend', `<img src=${img} class="img"/>`
       //   );
 
       //   // to display name
@@ -51,9 +48,9 @@ const fetchRandomUser = async () => {
       //   // displayCountry.insertAdjacentHTML('afterend', `${country}`);
       //   console.log(nat);
       //   displayCountry.insertAdjacentHTML(
-      //     'afterend',
-      //     `<span class="flag-icon flag-icon-${nat}"></span>`
+      //     'afterend', `<span class="flag-icon flag-icon-${nat}"></span>`
       //   );
+
       // to change color depending on gender
       const icon = document.querySelector('#icons');
       const gender = parsedData.results[0].gender;
