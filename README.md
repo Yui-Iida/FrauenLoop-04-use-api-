@@ -1,4 +1,4 @@
-# FrauenLoop-04-use-api
+# FrauenLoop-04-Random-user-API
 
 This is a FrauenLoop project of creating a webpage with RandomUser API and flag-icons library.
 
