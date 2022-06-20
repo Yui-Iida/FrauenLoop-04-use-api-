@@ -1,23 +1,24 @@
 const fetchRandomUser = async () => {
   // let userinfos = [];
   let response = await fetch(
-    'https://randomuser.me/api/?inc=gender,name,nat,picture'
+    'https://randomuser.me/api/?results=40'
+    // /?inc=gender,name,nat,picture
   );
   let parsedData = await response.json();
 
-  console.log(parsedData);
-
   const displayUser = parsedData => {
+    console.log(parsedData);
     try {
-      let img = parsedData.results[0].picture.large;
-      let name = parsedData.results[0].name;
-      let fullName = `${name.first} ${name.last}`.toLowerCase();
-      let nat = parsedData.results[0].nat.toLowerCase();
+      for (let i = 0; i <= parsedData.length; i++) {
+        let img = parsedData[i].picture.large;
+        let name = parsedData[i].name;
+        let fullName = `${name.first} ${name.last}`.toLowerCase();
+        let nat = parsedData[i].nat.toLowerCase();
 
-      const users = document.querySelector('#users');
-      users.insertAdjacentHTML(
-        'afterbegin',
-        `
+        const users = document.querySelector('#users');
+        users.insertAdjacentHTML(
+          'afterbegin',
+          `
         
       <div class="user">
       <img src=${img} class="img"/>
@@ -30,16 +31,16 @@ const fetchRandomUser = async () => {
     </div>
     </div>
       `
-      );
-      // to change color depending on gender
-      let icon = document.querySelector('#icons');
-      let gender = parsedData.results[0].gender;
-      if (gender === 'male') icon.style.color = 'red';
-      else icon.style.color = 'green';
-
+        );
+        // to change color depending on gender
+        let icon = document.querySelector('#icons');
+        let gender = parsedData[i].gender;
+        if (gender === 'male') icon.style.color = 'red';
+        else icon.style.color = 'green';
+      }
       //   // to display image
       //   const displayImg = document.querySelector('#img');
-      //   const img = parsedData.results[0].picture.large;
+      //   const img = parsedData[0].picture.large;
       //   displayImg.insertAdjacentHTML(
       //     'afterend', `<img src=${img} class="img"/>`
       //   );
@@ -62,9 +63,8 @@ const fetchRandomUser = async () => {
     }
   };
 
-  for (let i = 0; i < 32; i++) {
-    displayUser(parsedData);
-  }
+  displayUser(parsedData.results);
+  // pass something only we need
 };
 
 fetchRandomUser();
