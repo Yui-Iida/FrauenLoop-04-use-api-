@@ -1,18 +1,14 @@
 const fetchRandomUser = async () => {
-  // let userinfos = [];
-  let response = await fetch(
-    'https://randomuser.me/api/?inc=gender,name,nat,picture'
-  );
-  let parsedData = await response.json();
-
-  console.log(parsedData);
-
-  const displayUser = parsedData => {
+  //
+  for (var i = 0; i < 32; i++) {
+    let response = await fetch('https://randomuser.me/api/');
+    let parsedData = await response.json();
+    // console.log(parsedData);
     try {
-      let img = parsedData.results[0].picture.large;
-      let name = parsedData.results[0].name;
-      let fullName = `${name.first} ${name.last}`.toLowerCase();
-      let nat = parsedData.results[0].nat.toLowerCase();
+      const img = parsedData.results[0].picture.large;
+      const name = parsedData.results[0].name;
+      const fullName = `${name.first} ${name.last}`.toLowerCase();
+      const nat = parsedData.results[0].nat.toLowerCase();
 
       const users = document.querySelector('#users');
       users.insertAdjacentHTML(
@@ -31,11 +27,6 @@ const fetchRandomUser = async () => {
     </div>
       `
       );
-      // to change color depending on gender
-      let icon = document.querySelector('#icons');
-      let gender = parsedData.results[0].gender;
-      if (gender === 'male') icon.style.color = 'red';
-      else icon.style.color = 'green';
 
       //   // to display image
       //   const displayImg = document.querySelector('#img');
@@ -43,11 +34,13 @@ const fetchRandomUser = async () => {
       //   displayImg.insertAdjacentHTML(
       //     'afterend', `<img src=${img} class="img"/>`
       //   );
+
       //   // to display name
       //   const displayName = document.querySelector('#name');
       //   const name = parsedData.results[0].name;
       //   const fullName = `${name.first} ${name.last}`.toLowerCase();
       //   displayName.insertAdjacentHTML('afterend', `${fullName}`);
+
       //   // to display flag
       //   const displayCountry = document.querySelector('#flag');
       //   // const country = parsedData.results[0].location.country;
@@ -57,13 +50,15 @@ const fetchRandomUser = async () => {
       //   displayCountry.insertAdjacentHTML(
       //     'afterend', `<span class="flag-icon flag-icon-${nat}"></span>`
       //   );
+
+      // to change color depending on gender
+      const icon = document.querySelector('#icons');
+      const gender = parsedData.results[0].gender;
+      if (gender === 'male') icon.style.color = 'red';
+      else icon.style.color = 'green';
     } catch (error) {
       console.log('Error!: ', error);
     }
-  };
-
-  for (let i = 0; i < 32; i++) {
-    displayUser(parsedData);
   }
 };
 
